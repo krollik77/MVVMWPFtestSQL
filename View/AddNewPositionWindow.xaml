@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMWPF.View"
         mc:Ignorable="d"
-        Title="AddNewPositionWindow" Height="300" Width="300"
+         Title="AddNewPositionWindow" Height="300" Width="300"
         Name="AddNewPositionWnd">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,15 +17,18 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name"/>
-            <TextBox Name="NameBlock" />
+            <TextBox Name="NameBlock" Text="{Binding PositionName}"/>
             <TextBlock Text="Salary"/>
-            <TextBox Name="SalaryBlock" />
+            <TextBox Name="SalaryBlock" PreviewTextInput="PreviewTextInput" Text="{Binding PositionSalary}"/>
             <TextBlock Text="Max of vacancies"/>
-            <TextBox Name="MaxNumberBlock"/>
+            <TextBox Name="MaxNumberBlock" PreviewTextInput="PreviewTextInput"  Text="{Binding PositionMaxNumber}"/>
             <TextBlock Text="Department"/>
-            <ComboBox />
+            <ComboBox ItemsSource="{Binding AllDepartments}" 
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding PositionDepartment}"/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Add position" />
+        <Button Grid.Row="1" Content="Add position" 
+                Command="{Binding AddNewPosition}"
+                CommandParameter="{Binding ElementName=AddNewPositionWnd}"/>
     </Grid>
-
 </Window>

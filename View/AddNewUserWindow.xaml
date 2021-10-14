@@ -17,14 +17,18 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Name"/>
-            <TextBox Name="NameBlock" />
+            <TextBox Name="NameBlock" Text="{Binding UserName}"/>
             <TextBlock Text="Surname"/>
-            <TextBox Name="SurNameBlock" />
+            <TextBox Name="SurNameBlock" Text="{Binding UserSurName}"/>
             <TextBlock Text="Phone"/>
-            <TextBox Name="PhoneBlock" />
+            <TextBox Name="PhoneBlock" PreviewTextInput="PreviewTextInput" Text="{Binding UserPhone}"/>
             <TextBlock Text="Position"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding AllPositions}"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding UserPosition}"/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Add staff"/>
+        <Button Grid.Row="1" Content="Add staff"
+                Command="{Binding AddNewUser}"
+                CommandParameter="{Binding ElementName=AddNewUserWnd}"/>
     </Grid>
 </Window>
